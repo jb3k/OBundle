@@ -29,13 +29,13 @@ export default class Category extends CatalogPage {
 
     onProductShowSecondImage(e) {
         const productCard = $(e.currentTarget).find('.card-image');
-        const productImage = productCard.attr('data-hoverimage');
+        const productImage = productCard.attr('hoverimage');
         productCard.attr('srcset', productImage);
     }
 
     onProductRemoveSecondImage(e) {
         const productCard = $(e.currentTarget).find('.card-image');
-        const productImage = productCard.attr('data-src');
+        const productImage = productCard.attr('img-src');
         productCard.attr('srcset', productImage);
     }
 
@@ -56,7 +56,7 @@ export default class Category extends CatalogPage {
         }
 
 
-        $('.card-figure').hover(
+        $('.card-img-container').hover(
             this.onProductShowSecondImage.bind(this),
             this.onProductRemoveSecondImage.bind(this),
         );

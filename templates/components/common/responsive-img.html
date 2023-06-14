@@ -36,8 +36,8 @@ pixels wide will be used otherwise. This argument has no effect if the lazyload 
 
 --}}
 <img {{#if image}}{{!-- Get the default image for legacy browsers that do not support srcset --}}
-    data-src="{{getImageSrcset image use_default_sizes=true}}"
-    data-hoverimage='{{getImageSrcset images.[1] img size (cdn default) use_default_sizes=true}}'
+    img-src="{{getImageSrcset image use_default_sizes=true}}"
+    hoverimage='{{getImageSrcset images.[1] use_default_sizes=true}}'
     src="{{getImageSrcset image 1x=(default fallback_size '160w')}}" alt="{{image.alt}}" title="{{image.alt}}" {{!--
     Allow lazysizes to generate the 'sizes' attribute automatically --}}data-sizes="auto" {{#unless
     lazyload '==' 'disabled' }} {{#if lazyload '==' 'lazyload+lqip' }} {{!-- If we want a LQIP, include it as the
