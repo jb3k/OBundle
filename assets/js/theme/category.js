@@ -28,17 +28,15 @@ export default class Category extends CatalogPage {
     }
 
     onProductShowSecondImage(e) {
-        const productCard = $(e.currentTarget).find(".card-image");
-        const productImage = productCard.attr("data-hoverimage");
-        productCard.attr("srcset", productImage)
-
+        const productCard = $(e.currentTarget).find('.card-image');
+        const productImage = productCard.attr('data-hoverimage');
+        productCard.attr('srcset', productImage);
     }
 
     onProductRemoveSecondImage(e) {
-        const productCard = $(e.currentTarget).find(".card-image");
-        const productImage = productCard.attr("data-src");
-        productCard.attr("srcset", productImage)
-
+        const productCard = $(e.currentTarget).find('.card-image');
+        const productImage = productCard.attr('data-src');
+        productCard.attr('srcset', productImage);
     }
 
     onReady() {
@@ -58,10 +56,10 @@ export default class Category extends CatalogPage {
         }
 
 
-        $(".card-figure").hover(
+        $('.card-figure').hover(
             this.onProductShowSecondImage.bind(this),
-            this.onProductRemoveSecondImage.bind(this)
-        )
+            this.onProductRemoveSecondImage.bind(this),
+        );
 
 
         $('a.reset-btn').on('click', () => this.setLiveRegionsAttributes($('span.reset-message'), 'status', 'polite'));
