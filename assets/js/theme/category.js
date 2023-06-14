@@ -27,6 +27,20 @@ export default class Category extends CatalogPage {
         $('a.navList-action').on('click', () => this.setLiveRegionAttributes($('span.price-filter-message'), 'status', 'assertive'));
     }
 
+    onProductShowSecondImage(e) {
+        const productCard = $(e.currentTarget).find(".card-image");
+        const productImage = productCard.attr("data-hoverimage");
+        productCard.attr("srcset", productImage)
+
+    }
+
+    onProductRemoveSecondImage(e) {
+        const productCard = $(e.currentTarget).find(".card-image");
+        const productImage = productCard.attr("data-src");
+        productCard.attr("srcset", productImage)
+
+    }
+
     onReady() {
         this.arrangeFocusOnSortBy();
 
@@ -42,6 +56,13 @@ export default class Category extends CatalogPage {
             this.onSortBySubmit = this.onSortBySubmit.bind(this);
             hooks.on('sortBy-submitted', this.onSortBySubmit);
         }
+
+
+        $(".card-figure").hover(
+            this.onProductShowSecondImage.bind(this),
+            this.onProductRemoveSecondImage.bind(this)
+        )
+
 
         $('a.reset-btn').on('click', () => this.setLiveRegionsAttributes($('span.reset-message'), 'status', 'polite'));
 
