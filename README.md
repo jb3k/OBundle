@@ -1,3 +1,11 @@
+## Project Overview
+
+    Preview code: No preview code because the store launched already. (https://support.bigcommerce.com/s/question/0D51300003ZLilHCAT/where-is-the-preview-code?language=en_US)
+
+    Site Link: https://demo-user.mybigcommerce.com
+
+
+
 ## Set Up
 
 1. Initial Setup was to downloaded and install the Stencil CLI for my local machine and created an API Account on my Store Dashboard. 
@@ -237,3 +245,10 @@ Notes:
 Documentation:
 
   - https://tutorial.djangogirls.org/en/template_extending/
+
+
+
+## Issues
+
+  - Deploying the actual project. Kept getting an error that said ThemeUploadError. I figured out that I need to make the them public, not just local. 
+  - Solution: https://github.com/bigcommerce/stencil-cli/issues/734
