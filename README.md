@@ -10,7 +10,7 @@
 2. Clone Stencil's Cornerstone theme repo from documentation.
 3. Install all dependencies with `npm i` in root directory of project, then run Stencil Commands to start
 
-# Documention Used:
+### Documention Used:
 - https://developer.bigcommerce.com/stencil-docs/installing-stencil-cli/installing-stencil
 - https://developer.bigcommerce.com/stencil-docs/installing-stencil-cli/live-previewing-a-theme
 
@@ -69,7 +69,7 @@ Notes:
   - The getImageSrcset HandleBar helper is a replacement for getImage which allows you to generate either a single image URL (for an <img> src) or a list of image sizes for srcset. Using the srcset(opens in a new tab) attribute, you can specify a list of image sizes for the browser to choose from based on the expected size of the image on the page, the device's pixel density, and other factors.
 
 
-# Documention Used:
+### Documention Used:
 - https://developer.bigcommerce.com/stencil-docs/storefront-customization/directory-structure#templates
 - https://developer.bigcommerce.com/stencil-docs/storefront-customization/theme-assets
 - https://developer.bigcommerce.com/stencil-docs/reference-docs/handlebars-helpers-reference
@@ -136,7 +136,7 @@ Notes:
 
   - can add injections as placeholders to inject dynamic data or values in a template. 
 
-# Documention Used:
+### Documention Used:
 - https://developer.bigcommerce.com/stencil-docs/reference-docs/stencil-utils-api-reference
 - https://handlebarsjs.com/guide/
 - https://developer.bigcommerce.com/api-docs/storefront/tutorials/working-sf-apis
@@ -197,7 +197,7 @@ Notes:
 
   - Added extra css styling into a file called 'assessment.scss'
 
-# Documention Used:
+### Documention Used:
 - https://developer.bigcommerce.com/api-docs/storefront/tutorials/working-sf-apis#delete-a-cart-item
 - https://developer.bigcommerce.com/docs/rest-storefront/carts/cart-items#delete-cart-line-item
 - https://developer.bigcommerce.com/docs/rest-storefront/carts#get-a-cart
@@ -240,7 +240,7 @@ Notes:
   - Added extra css styling into a file called 'assessment.scss'
 
 
-Documentation:
+### Documentation:
 
   - https://tutorial.djangogirls.org/en/template_extending/
 
