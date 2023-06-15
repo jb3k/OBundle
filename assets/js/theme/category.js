@@ -85,8 +85,7 @@ export default class Category extends CatalogPage {
                         $('.add-notification').css('display', 'none');
                         this.onCheckCart();
 
-                    }, 4000);
-                }
+                    }, 4000);}
             })
             .catch(err => console.error(err));
     }
@@ -113,8 +112,7 @@ export default class Category extends CatalogPage {
                         $('.remove-notification').css('display', 'none');
                         this.onCheckCart();
 
-                    }, 4000);
-                }
+                    }, 4000);}
             })
             .catch(err => console.error(err));
     }
@@ -125,12 +123,9 @@ export default class Category extends CatalogPage {
                 if (data.length > 0) {
                     $('#remove-all-items').css('display', 'block');
                     $('#add-all-to-cart').css('display', 'none');
-
                 } else {
                     $('#add-all-to-cart').css('display', 'block');
-                    $('#remove-all-items').css('display', 'none');
-
-                }
+                    $('#remove-all-items').css('display', 'none');}
             })
             .catch(err => console.error(err));
     }
