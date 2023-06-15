@@ -4,6 +4,8 @@ import compareProducts from './global/compare-products';
 import FacetedSearch from './common/faceted-search';
 import { createTranslationDictionary } from '../theme/common/utils/translations-utils';
 
+const CART_API = "/api/storefront/carts";
+
 export default class Category extends CatalogPage {
     constructor(context) {
         super(context);
@@ -39,6 +41,56 @@ export default class Category extends CatalogPage {
         productCard.attr('srcset', productImage);
     }
 
+    
+    createCart(url, items) {
+        const cartItems = {
+            lineItems: items
+        };
+        const body = JSON.stringify(cartItems);
+        
+        return fetch(url, {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body
+        }).then(response => response.json());
+    }
+    
+    getCart(route) {
+        return fetch(route, {
+          method: "GET",
+          credentials: "same-origin"
+        })
+        .then(response => response.json())
+        .catch(error => console.error(error));
+      };
+    
+    onAddAllToCart() {
+        let products = [];
+        for (let i = 0; i < this.context.categoryProducts.length; i++) {
+            products = [
+                ...products,
+                {
+                    quantity: this.context.categoryProducts[i].qty_in_cart + 1,
+                    productId: this.context.categoryProducts[i].id
+                }
+            ];
+        }
+        this.createCart(CART_API, products)
+            .then(data => {
+                if (data) {
+                    $(".add-notification").css("display", "block");
+                    setTimeout(() => {
+                        $(".add-notification").css("display", "none");
+                    }, 4000);
+                }
+            })
+            .catch(err => console.error(err));
+    }
+
+
     onReady() {
         this.arrangeFocusOnSortBy();
 
@@ -55,7 +107,7 @@ export default class Category extends CatalogPage {
             hooks.on('sortBy-submitted', this.onSortBySubmit);
         }
 
-
+        $("#add-all-to-cart").on("click", this.onAddAllToCart.bind(this));
         $('.card-img-container').hover(
             this.onProductShowSecondImage.bind(this),
             this.onProductRemoveSecondImage.bind(this),

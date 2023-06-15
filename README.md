@@ -16,15 +16,18 @@ Goal: Feature that will show the 'Special Item' product's second image when hove
 
 Walk Thru:
 
-  -- `templates/components/common/responsive-img.html` (Line 40)
+- `templates/components/common/responsive-img.html`
   ```
     <img
       img-src="{{getImageSrcset image use_default_sizes=true}}"
       hoverimage='{{getImageSrcset images.[1] use_default_sizes=true}}'
     />
   ```
+  - Here we are using the getImageSrcset handlebar helper to grab the image we want to use as well as the image we want to hover over. 
 
-  -- `assets/js/theme/category.js`
+
+
+- `assets/js/theme/category.js`
   
   ```
     onProductShowSecondImage(e) {
@@ -40,6 +43,8 @@ Walk Thru:
     }
   ```
 
+  - Here we are creating functions to find the image we are looking to show the second image, then remove the second image for the Special Item.
+
 
 Result
   - Go to 'Special Item' Category tag on main page.
@@ -48,7 +53,7 @@ Result
 
 Notes:
 
-  - I found that each Stencil theme’s assets/ directory contains CSS, JavaScript, and image assets that help create the design of storefront pages. Therefore, since the hover feature was going to be implemented into the 'Special Item' category page, I did some digging in the assets directory and located the file `assets/js/theme/category.js`, then found, the template page that was linked to it at `templates/pages/category.html` which then led me to `templates/components/common/responsive-img.html` page which was the page that was controlling images for the categories. 
+  - From Documentation, I found that each Stencil theme’s assets/ directory contains CSS, JavaScript, and image assets that help create the design of storefront pages. Therefore, since the hover feature was going to be implemented into the 'Special Item' category page, I did some digging in the assets directory and located the file `assets/js/theme/category.js`, then found, the template page that was linked to categories at `templates/pages/category.html` which then led me to `templates/components/common/responsive-img.html` page which was the page that was controlling images for the categories. 
 
   - once I created the hover image, i realized that I needed a way to change the image back, so I had to create another method to remove the 2nd image once i hovered off of it. Also when applying to hover, needed to apply it on the container of the image not just the image.
 
@@ -67,4 +72,65 @@ Notes:
 
 
 
-  
+## Feature 2
+
+Goal: Add a button at the top of the category page labeled Add All To Cart. When clicked, the product will be added to the cart. Notify the user that the product has been added.
+
+Walk Thru:
+
+
+- `templates/pages/category.html`
+  ```
+    <div class="cart-notification">
+      <div class="add-notification">
+        Items were successfully added to the cart!
+      </div>
+    </div>
+
+    ------------------------------
+
+    {{#if category.name "===" "Special Item"}}
+    <div class="add-all-button-container">
+        <input type="button" class="button button--primary" id="add-all-to-cart" value="Add All To Cart" />
+    </div>
+    {{/if}}
+
+  ```
+
+  - add this notification where ever you want it to populate on the page. In our case uploaded at the top, so put it near the top of page. 
+  - Here, I added the button near the top of the page as well with some already inputed css. 
+
+
+
+  -- `assets/js/theme/category.js`
+  ```
+    $("#add-all-to-cart").on("click", this.onAddAllToCart.bind(this));
+
+  ```
+
+  - Here I am adding the functionality of the button I created. 
+
+
+Result
+  - Go to Special Items Category.
+  - Click the button Add All To Cart at the top of the category.
+
+
+Notes:
+
+  - HandleBars.js briefing: uses a syntax that allows you to define placeholders, called "mustaches," in your HTML templates. These mustaches are replaced with actual data values when the template is rendered.
+
+  - The createCart() function takes two arguments (route, cartItems)
+      - route: The endpoint's request route.
+      - cartItems: A lineItems array containing product IDs and quantities of the items we want to add.
+  - getCart Method takes in two arguments (option, callback), callback is optional
+      - option: Return product variant options.
+      - callback: Asynchronous function the subject method calls to handle any results.
+  - addCart()
+
+  - can add injections as placeholders to inject dynamic data or values in a template. 
+
+# Documention Used:
+- https://developer.bigcommerce.com/stencil-docs/reference-docs/stencil-utils-api-reference
+- https://handlebarsjs.com/guide/
+- https://developer.bigcommerce.com/api-docs/storefront/tutorials/working-sf-apis
