@@ -1,7 +1,7 @@
 ## Project Overview
 
-Preview code: No preview code because the store launched already.
-Site Link: [Store Link](https://demo-user.mybigcommerce.com)
+- Preview code: No preview code because the store launched already.
+- Site Link: [Store Link](https://demo-user.mybigcommerce.com)
 
 
 ## Set Up
