@@ -60,11 +60,11 @@ export default class Category extends CatalogPage {
     getCart(route) {
         return fetch(route, {
             method: 'GET',
-            credentials: 'same-origin'
+            credentials: 'same-origin',
         })
             .then(response => response.json())
             .catch(error => console.error(error));
-    };
+    }
 
     onAddAllToCart() {
         let products = [];
@@ -73,8 +73,8 @@ export default class Category extends CatalogPage {
                 ...products,
                 {
                     quantity: this.context.categoryProducts[i].qty_in_cart + 1,
-                    productId: this.context.categoryProducts[i].id
-                }
+                    productId: this.context.categoryProducts[i].id,
+                },
             ];
         }
         this.createCart(CART_API, products)
@@ -96,15 +96,13 @@ export default class Category extends CatalogPage {
             method: 'DELETE',
             credentials: 'same-origin',
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+            },
         }).then(response => response);
     }
 
     onRemoveAllItems() {
-        this.getCart(
-            `${CART_API}?include=lineItems.digitalItems.options,lineItems.physicalItems.options`
-        )
+        this.getCart(`${CART_API}?include=lineItems.digitalItems.options,lineItems.physicalItems.options`)
             .then(data => this.deleteCartItems(CART_API, data[0].id))
             .then(data => {
                 if (data) {
@@ -122,9 +120,7 @@ export default class Category extends CatalogPage {
     }
 
     onCheckCart() {
-        this.getCart(
-            `${CART_API}?include=lineItems.digitalItems.options,lineItems.physicalItems.options`
-        )
+        this.getCart(`${CART_API}?include=lineItems.digitalItems.options,lineItems.physicalItems.options`)
             .then(data => {
                 if (data.length > 0) {
                     $('#remove-all-items').css('display', 'block');
