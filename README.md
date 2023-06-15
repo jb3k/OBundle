@@ -1,8 +1,8 @@
 ## Project Overview
 
-    Preview code: No preview code because the store launched already. (https://support.bigcommerce.com/s/question/0D51300003ZLilHCAT/where-is-the-preview-code?language=en_US)
+    Preview code: No preview code because the store launched already.(https://support.bigcommerce.com/s/question/0D51300003ZLilHCAT/where-is-the-preview-code?language=en_US)
 
-    Site Link: https://demo-user.mybigcommerce.com
+    Site Link: [Store Link](https://demo-user.mybigcommerce.com)
 
 
 
