@@ -84,7 +84,6 @@ export default class Category extends CatalogPage {
                     setTimeout(() => {
                         $('.add-notification').css('display', 'none');
                         this.onCheckCart();
-
                     }, 4000);
                 }
             })
@@ -112,7 +111,6 @@ export default class Category extends CatalogPage {
                     setTimeout(() => {
                         $('.remove-notification').css('display', 'none');
                         this.onCheckCart();
-
                     }, 4000);
                 }
             })
