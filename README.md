@@ -102,7 +102,7 @@ Walk Thru:
 
 
 
-  -- `assets/js/theme/category.js`
+- `assets/js/theme/category.js`
   ```
     $("#add-all-to-cart").on("click", this.onAddAllToCart.bind(this));
 
@@ -134,3 +134,62 @@ Notes:
 - https://developer.bigcommerce.com/stencil-docs/reference-docs/stencil-utils-api-reference
 - https://handlebarsjs.com/guide/
 - https://developer.bigcommerce.com/api-docs/storefront/tutorials/working-sf-apis
+
+
+
+## Feature 3
+
+Goal: If the cart has an item in it - show a button next to the Add All To Cart button which says Remove All Items. When clicked it should clear the cart and notify the user. Both buttons should utilize the Storefront API for completion.
+
+Walk Thru:
+
+
+- `templates/pages/category.html`
+  ```
+    <div class="cart-notification">
+      <div class="remove-notification">
+          Items were successfully removed from the cart!
+      </div>
+    </div>
+
+    ------------------------------
+
+    {{#if category.name "===" "Special Item"}}
+    <div class="add-all-button-container">
+      <input type="button" class="button button--danger" id="remove-all-items" value="Remove All Items"/>
+    </div>
+    {{/if}}
+
+  ```
+
+  - add this notification where ever you want it to populate on the page. In our case uploaded at the top, so put it near the top of page. 
+  - Here, I added the button near the top of the page as well with some already inputed css. 
+
+
+
+- `assets/js/theme/category.js`
+  ```
+      $("#remove-all-items").on("click", this.onRemoveAllItems.bind(this));
+
+  ```
+
+  - Here I am adding the functionality of the button I created. 
+
+
+Result
+  - Go to Special Items Category.
+  - Click the button Remove All Items after clicking on Add All To Cart at the top of the category.
+
+
+Notes:
+
+  - To delete a line item from a cart, send a DELETE request to the Delete Cart Line Item endpoint and pass in the cartId and itemId to be deleted.
+
+  - To getCart, we need to send a request to the Get a cart endpoint. By default, the cart response returns abbreviated product details.
+  
+  - I added functionality to check the cart and only display the buttons that make sense. So if the cart is empty, then display the add all to cart button, if has something only display the remove button. 
+
+# Documention Used:
+- https://developer.bigcommerce.com/api-docs/storefront/tutorials/working-sf-apis#delete-a-cart-item
+- https://developer.bigcommerce.com/docs/rest-storefront/carts/cart-items#delete-cart-line-item
+- https://developer.bigcommerce.com/docs/rest-storefront/carts#get-a-cart

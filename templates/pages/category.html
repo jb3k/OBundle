@@ -25,7 +25,11 @@ limit: {{theme_settings.categorypage_products_per_page}}
     <div class="add-notification">
         Items were successfully added to the cart!
     </div>
+    <div class="remove-notification">
+        Items were successfully removed from the cart!
+    </div>
 </div>
+<div class="clear-both"></div>
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 {{#if category.image}}
@@ -45,6 +49,7 @@ class="category-header-image"
 {{#if category.name "===" "Special Item"}}
 <div class="add-all-button-container">
     <input type="button" class="button button--primary" id="add-all-to-cart" value="Add All To Cart" />
+    <input type="button" class="button button--danger" id="remove-all-items" value="Remove All Items"/>
 </div>
 {{/if}}
 

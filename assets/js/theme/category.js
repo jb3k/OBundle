@@ -4,7 +4,7 @@ import compareProducts from './global/compare-products';
 import FacetedSearch from './common/faceted-search';
 import { createTranslationDictionary } from '../theme/common/utils/translations-utils';
 
-const CART_API = "/api/storefront/carts";
+const CART_API = '/api/storefront/carts';
 
 export default class Category extends CatalogPage {
     constructor(context) {
@@ -41,32 +41,31 @@ export default class Category extends CatalogPage {
         productCard.attr('srcset', productImage);
     }
 
-    
     createCart(url, items) {
         const cartItems = {
-            lineItems: items
+            lineItems: items,
         };
         const body = JSON.stringify(cartItems);
-        
+
         return fetch(url, {
-            method: "POST",
-            credentials: "same-origin",
+            method: 'POST',
+            credentials: 'same-origin',
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json',
             },
-            body
+            body,
         }).then(response => response.json());
     }
-    
+
     getCart(route) {
         return fetch(route, {
-          method: "GET",
-          credentials: "same-origin"
+            method: 'GET',
+            credentials: 'same-origin'
         })
-        .then(response => response.json())
-        .catch(error => console.error(error));
-      };
-    
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    };
+
     onAddAllToCart() {
         let products = [];
         for (let i = 0; i < this.context.categoryProducts.length; i++) {
@@ -81,20 +80,69 @@ export default class Category extends CatalogPage {
         this.createCart(CART_API, products)
             .then(data => {
                 if (data) {
-                    $(".add-notification").css("display", "block");
+                    $('.add-notification').css('display', 'block');
                     setTimeout(() => {
-                        $(".add-notification").css("display", "none");
+                        $('.add-notification').css('display', 'none');
+                        this.onCheckCart();
+
                     }, 4000);
                 }
             })
             .catch(err => console.error(err));
     }
 
+    deleteCartItems(url, cartId) {
+        return fetch(`${url}/${cartId}`, {
+            method: 'DELETE',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response);
+    }
+
+    onRemoveAllItems() {
+        this.getCart(
+            `${CART_API}?include=lineItems.digitalItems.options,lineItems.physicalItems.options`
+        )
+            .then(data => this.deleteCartItems(CART_API, data[0].id))
+            .then(data => {
+                if (data) {
+                    $('#remove-all-items').css('display', 'none');
+                    $('.add-notification').css('display', 'none');
+                    $('.remove-notification').css('display', 'block');
+                    setTimeout(() => {
+                        $('.remove-notification').css('display', 'none');
+                        this.onCheckCart();
+
+                    }, 4000);
+                }
+            })
+            .catch(err => console.error(err));
+    }
+
+    onCheckCart() {
+        this.getCart(
+            `${CART_API}?include=lineItems.digitalItems.options,lineItems.physicalItems.options`
+        )
+            .then(data => {
+                if (data.length > 0) {
+                    $('#remove-all-items').css('display', 'block');
+                    $('#add-all-to-cart').css('display', 'none');
+
+                } else {
+                    $('#add-all-to-cart').css('display', 'block');
+                    $('#remove-all-items').css('display', 'none');
+
+                }
+            })
+            .catch(err => console.error(err));
+    }
 
     onReady() {
         this.arrangeFocusOnSortBy();
 
-        $('[data-button-type="add-cart"]').on('click', (e) => this.setLiveRegionAttributes($(e.currentTarget).next(), 'status', 'polite'));
+        $("[data-button-type='add-cart']").on('click', (e) => this.setLiveRegionAttributes($(e.currentTarget).next(), 'status', 'polite'));
 
         this.makeShopByPriceFilterAccessible();
 
@@ -107,7 +155,9 @@ export default class Category extends CatalogPage {
             hooks.on('sortBy-submitted', this.onSortBySubmit);
         }
 
-        $("#add-all-to-cart").on("click", this.onAddAllToCart.bind(this));
+        this.onCheckCart();
+        $('#add-all-to-cart').on('click', this.onAddAllToCart.bind(this));
+        $('#remove-all-items').on('click', this.onRemoveAllItems.bind(this));
         $('.card-img-container').hover(
             this.onProductShowSecondImage.bind(this),
             this.onProductRemoveSecondImage.bind(this),
