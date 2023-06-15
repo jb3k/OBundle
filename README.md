@@ -186,10 +186,54 @@ Notes:
   - To delete a line item from a cart, send a DELETE request to the Delete Cart Line Item endpoint and pass in the cartId and itemId to be deleted.
 
   - To getCart, we need to send a request to the Get a cart endpoint. By default, the cart response returns abbreviated product details.
-  
+
   - I added functionality to check the cart and only display the buttons that make sense. So if the cart is empty, then display the add all to cart button, if has something only display the remove button. 
+
+  - Added extra css styling into a file called 'assessment.scss'
 
 # Documention Used:
 - https://developer.bigcommerce.com/api-docs/storefront/tutorials/working-sf-apis#delete-a-cart-item
 - https://developer.bigcommerce.com/docs/rest-storefront/carts/cart-items#delete-cart-line-item
 - https://developer.bigcommerce.com/docs/rest-storefront/carts#get-a-cart
+
+
+
+
+## Bonus
+
+Goal: If a customer is logged in - at the top of the category page show a banner that shows some customer details (i.e. name, email, phone, etc). This should utilize the data that is rendered via Handlebars on the Customer Object.
+
+
+Walk-Thru:
+
+- `templates/components/common/header.html`
+  ```
+    {{#if customer}}
+    <div class="customer-details-container">
+        <div class="customer-about">
+            <p class="customer-name">
+                {{customer.name}}
+            </p>
+            <p class="customer-email">
+                {{customer.email}}
+            </p>
+            <p class="customer-phone">
+                {{customer.phone}}
+            </p>
+        </div>
+    </div>
+    {{/if}}
+  ```
+
+  - Here I am targetting the Hanldebar Customer to access their basic info if there is a customer. 
+
+Notes:
+
+  - First I had to locate where I wanted to add this additional feature and figured to put it on the home page. Similar to the first 3 features, I went straight to `templates/pages/home.html`. This led me to `templates/layout/base.html` then to the file `templates/components/common/header.html`.
+
+  - Added extra css styling into a file called 'assessment.scss'
+
+
+Documentation:
+
+  - https://tutorial.djangogirls.org/en/template_extending/

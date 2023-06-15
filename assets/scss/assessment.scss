@@ -22,6 +22,18 @@
 }
 
 
-.clear--both {
-    clear: both;
+.customer-details-container {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
+
+
+.customer-about {
+    display: flex;
+}
+
+.customer-about p {
+    margin-bottom: 0;
+    margin-right: 2rem
 }

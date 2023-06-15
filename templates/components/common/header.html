@@ -10,6 +10,23 @@
     {{/each}}
 </div>
 {{/if}}
+
+{{#if customer}}
+<div class="customer-details-container">
+    <div class="customer-about">
+        <p class="customer-name">
+            {{customer.name}}
+        </p>
+        <p class="customer-email">
+            {{customer.email}}
+        </p>
+        <p class="customer-phone">
+            {{customer.phone}}
+        </p>
+    </div>
+</div>
+{{/if}}
+
 <header class="header" role="banner">
     <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
         <span class="mobileMenu-toggleIcon">Toggle menu</span>
