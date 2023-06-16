@@ -1,6 +1,6 @@
 ## Project Overview
 
-- Preview code: No preview code because the store launched already.
+- Preview code: 600sqind3d
 - Site Link: [Store Link](https://demo-user.mybigcommerce.com)
 
 
@@ -250,4 +250,3 @@ Notes:
 
   - Deploying the actual project. Kept getting an error that said ThemeUploadError. I figured out that I need to make the them public, not just local. 
   - Solution: https://github.com/bigcommerce/stencil-cli/issues/734
-  - (https://support.bigcommerce.com/s/question/0D51300003ZLilHCAT/where-is-the-preview-code?language=en_US)
